@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Euphonious</string>
+    <string name="navigation_dashboard">Dashboard</string>
+    <string name="navigation_songs">Songs</string>
+    <string name="navigation_albums">Albums</string>
+    <string name="navigation_artists">Artists</string>
+    <string name="navigation_playlist">Playlist</string>
+</resources>
