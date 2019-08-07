@@ -8,7 +8,7 @@ class SongDataSource(contentResolver: ContentResolver) : PositionalDataSource<So
     private val songLoader = SongLoader(contentResolver)
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Song>) {
-        val listOfSongs =
+        val listOfSongs: List<Song> =
             songLoader.loadSongs(params.requestedLoadSize, params.requestedStartPosition)
         callback.onResult(listOfSongs, 0, listOfSongs.size)
     }
