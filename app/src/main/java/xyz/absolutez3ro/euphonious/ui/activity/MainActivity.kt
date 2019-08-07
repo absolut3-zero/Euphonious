@@ -1,9 +1,14 @@
-package xyz.absolutez3ro.euphonious
+package xyz.absolutez3ro.euphonious.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import xyz.absolutez3ro.euphonious.R
+import xyz.absolutez3ro.euphonious.data.song.SongViewModel
+import xyz.absolutez3ro.euphonious.data.song.SongViewModelFactory
 import xyz.absolutez3ro.euphonious.ui.fragment.*
 import xyz.absolutez3ro.euphonious.utility.Constants
 import xyz.absolutez3ro.euphonious.utility.PreferenceHelper
@@ -45,8 +50,25 @@ class MainActivity : AppCompatActivity() {
             navView.selectedItemId = R.id.navigation_dashboard
             PreferenceHelper.putInt(this, Constants.LAST_FRAGMENT, navView.selectedItemId)
         } else {
-            navView.selectedItemId = PreferenceHelper.getInt(this, Constants.LAST_FRAGMENT, R.id.navigation_dashboard)
+            navView.selectedItemId = PreferenceHelper.getInt(
+                this, Constants.LAST_FRAGMENT,
+                R.id.navigation_dashboard
+            )
         }
+
+//        val songLoader = SongLoader(applicationContext.contentResolver)
+//        val list = songLoader.loadAllSongs(10,1)
+//        list.forEach {
+//            Log.d("MainActivity", it.title)
+//        }
+
+        Log.d("MainActivity", "Shahnawaz")
+        val viewModel = SongViewModelFactory().create(SongViewModel::class.java)
+        viewModel.getSongs(applicationContext.contentResolver).observe(this, Observer { pagedList ->
+            pagedList.forEach {
+                Log.d("MainActivity", it.title)
+            }
+        })
     }
 
     override fun onStop() {
