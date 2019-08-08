@@ -10,7 +10,7 @@ class AlbumViewModel : ViewModel() {
 
     private fun loadAlbums(contentResolver: ContentResolver): LiveData<PagedList<Album>> {
         val config = PagedList.Config.Builder()
-            .setPageSize(10)
+            .setPageSize(6)
             .setEnablePlaceholders(false)
             .build()
         return LivePagedListBuilder(AlbumDataSourceFactory(contentResolver), config)

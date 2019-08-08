@@ -9,7 +9,7 @@ class AlbumDataSource(contentResolver: ContentResolver) : PositionalDataSource<A
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Album>) {
         val listOfAlbums =
             albumLoader.loadAlbums(params.requestedLoadSize, params.requestedStartPosition)
-        callback.onResult(listOfAlbums, 0, listOfAlbums.size)
+        callback.onResult(listOfAlbums, 0)
     }
 
     override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<Album>) {
